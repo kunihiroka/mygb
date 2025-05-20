@@ -2,24 +2,34 @@ import mygb
 
 import numpy as np
 
-def f3():
-    """
-    DI:
-    This instruction disables interrupts but not immediately.
-    Interrupts are disabled after instruction DI is executed.
-    """
-    print('f3')
+class GbInstructions:
+    F3_PRM_SIZE = 0
+    def f3(prm):
+        """
+        DI:
+        This instruction disables interrupts but not immediately.
+        Interrupts are disabled after instruction DI is executed.
+        """
+        print('f3')
+        print(prm)
 
-def c3():
-    """
-    JP nn
-    Jump to address nn.
-    """
-    print('c3')
+    C3_PRM_SIZE = 2
+    def c3(prm):
+        """
+        JP nn
+        Jump to address nn.
+        """
+        print('c3')
+        print(prm)
+
+parameter_size_table = {
+    "f3": GbInstructions.F3_PRM_SIZE,
+    "c3": GbInstructions.C3_PRM_SIZE,
+}
 
 instruction_table = {
-    "f3": f3,
-    "c3": c3,
+    "f3": GbInstructions.f3,
+    "c3": GbInstructions.c3,
 }
 
 def main():
@@ -35,12 +45,18 @@ def main():
 
         while True:                             # とりま無限ループ。
             file.seek(pc)
+
+            # 命令コード読み出し
             data = file.read(1)          # 1byte読み出し
-
-            instruction_table[data.hex()]()
-
-            # プログラムカウンタを進める
             pc = pc + 1
+
+            # パラメータ読み出し
+            prm_size = parameter_size_table[data.hex()]
+            prm = file.read(prm_size)
+            pc = pc + prm_size
+
+            # 命令実行
+            instruction_table[data.hex()](prm)
 
 
 if __name__ == '__main__':
