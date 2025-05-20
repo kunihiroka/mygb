@@ -2,9 +2,24 @@ import mygb
 
 import numpy as np
 
+def f3():
+    """
+    DI:
+    This instruction disables interrupts but not immediately.
+    Interrupts are disabled after instruction DI is executed.
+    """
+    print('f3')
+
+def c3():
+    """
+    JP nn
+    Jump to address nn.
+    """
+    print('c3')
+
 instruction_table = {
     "f3": f3,
-    "c3": c3
+    "c3": c3,
 }
 
 def main():
@@ -22,14 +37,11 @@ def main():
             file.seek(pc)
             data = file.read(1)          # 1byte読み出し
 
-            instruction_table[data.decode('utf-8')]()
+            instruction_table[data.hex()]()
 
             # プログラムカウンタを進める
             pc = pc + 1
 
-
-def f3():
-    print('Interrupts disabled')
 
 if __name__ == '__main__':
     main()
