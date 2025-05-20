@@ -1,30 +1,32 @@
+import mygb
+
 import numpy as np
 
+instruction_table = {
+    "f3": f3,
+    "c3": c3
+}
+
 def main():
-    print('hello world')
     # レジスタ定義
     pc = np.uint16(0)
 
+    # 読み出すROMのパスを設定
+    rom_path = './rom/hello-world.gb'
+
     # ROMファイルの読み込み
-    with open('../rom/hello-world.gb', 'rb') as file: # 'rb'で開くとバイナリ読み込みになる。
+    with open(rom_path, 'rb') as file: # 'rb'で開くとバイナリ読み込みになる。
         pc = int('100', 16)
 
-        file.seek(pc)
-        data = file.read(1)
-        print(data)
+        while True:                             # とりま無限ループ。
+            file.seek(pc)
+            data = file.read(1)          # 1byte読み出し
 
-        if data == b'\xf3':
-            f3()
+            instruction_table[data.decode('utf-8')]()
 
-        # プログラムカウンタを進める
-        pc = pc + 1
+            # プログラムカウンタを進める
+            pc = pc + 1
 
-        file.seek(pc)
-        data = file.read(1)
-        print(data)
-
-        if data == b'\xc3'
-            c3()
 
 def f3():
     print('Interrupts disabled')
