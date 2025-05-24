@@ -1,6 +1,23 @@
+from abc import ABC, abstractmethod
 import mygb
 
 import numpy as np
+
+class MyInterface(ABC):
+    @abstractmethod
+    def getParameterSize(self):
+        pass
+
+    @abstractmethod
+    def execute(self, parameter):
+        pass
+
+class F3(MyInterface):
+    def getParameterSize(self):
+        return 0
+
+    def execute(self, parameter):
+        print("f3 implemented as class")
 
 class GbInstructions:
     F3_PRM_SIZE = 0
