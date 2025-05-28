@@ -68,7 +68,7 @@ def get_instruction_object(instruction_name):
     if instruction_class:
         return instruction_class()
     else:
-        raise ValueError(f"unknown class")
+        raise ValueError("unknown class")
 
 
 
