@@ -46,15 +46,6 @@ class C3(MyInterface):
         print("c3 implemented as class")
         print(parameter)
 
-# 命令インスタンスの作成
-f3 = F3("F3")
-c3 = C3("C3")
-
-# 命令インスタンステーブル
-instructions = {
-    "f3": f3,
-    "c3": c3,
-}
 
 # 命令クラステーブル
 instruction_class_table = {
@@ -62,11 +53,12 @@ instruction_class_table = {
     "c3": C3
 }
 
+# 命令インスタンス取得
 def get_instruction_object(instruction_name):
     instruction_class = instruction_class_table.get(instruction_name)
 
     if instruction_class:
-        return instruction_class()
+        return instruction_class("inst")
     else:
         raise ValueError("unknown class")
 
@@ -87,16 +79,21 @@ def main():
             file.seek(pc)
 
             # 命令コード読み出し
-            data = file.read(1)          # 1byte読み出し
+            instruction_code = file.read(1)          # 1byte読み出し
             pc = pc + 1
 
+            # 命令オブジェクトの取得
+            instruction_object = get_instruction_object(instruction_code.hex())
+
             # パラメータ読み出し
-            parameter_size = instructions.get(data.hex()).getParameterSize()
+            ## その命令のパラメータサイズを取得
+            parameter_size = instruction_object.getParameterSize()
+            ## パラメータ読み出し
             parameter = file.read(parameter_size)
             pc = pc + parameter_size
 
             # 命令実行
-            instructions.get(data.hex()).execute(parameter)
+            instruction_object.execute(parameter)
 
 
 if __name__ == '__main__':
