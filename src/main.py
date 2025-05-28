@@ -56,6 +56,22 @@ instructions = {
     "c3": c3,
 }
 
+# 命令クラステーブル
+instruction_class_table = {
+    "f3": F3,
+    "c3": C3
+}
+
+def get_instruction_object(instruction_name):
+    instruction_class = instruction_class_table.get(instruction_name)
+
+    if instruction_class:
+        return instruction_class()
+    else:
+        raise ValueError(f"unknown class")
+
+
+
 def main():
     # レジスタ定義
     pc = np.uint16(0)
