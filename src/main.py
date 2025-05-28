@@ -3,6 +3,7 @@ import mygb
 
 import numpy as np
 
+# 命令の抽象クラス
 class MyInterface(ABC):
     @abstractmethod
     def getParameterSize(self):
@@ -12,41 +13,47 @@ class MyInterface(ABC):
     def execute(self, parameter):
         pass
 
+# F3命令
 class F3(MyInterface):
+    """
+    DI:
+    This instruction disables interrupts but not immediately.
+    Interrupts are disabled after instruction DI is executed.
+    """
+    def __init__(self, name):
+        self.name = name
+
     def getParameterSize(self):
         return 0
 
     def execute(self, parameter):
         print("f3 implemented as class")
+        print(parameter)
 
-class GbInstructions:
-    F3_PRM_SIZE = 0
-    def f3(prm):
-        """
-        DI:
-        This instruction disables interrupts but not immediately.
-        Interrupts are disabled after instruction DI is executed.
-        """
-        print('f3')
-        print(prm)
+# C3命令
+class C3(MyInterface):
+    """
+    JP nn
+    Jump to address nn.
+    """
+    def __init__(self, name):
+        self.name = name
 
-    C3_PRM_SIZE = 2
-    def c3(prm):
-        """
-        JP nn
-        Jump to address nn.
-        """
-        print('c3')
-        print(prm)
+    def getParameterSize(self):
+        return 2
 
-parameter_size_table = {
-    "f3": GbInstructions.F3_PRM_SIZE,
-    "c3": GbInstructions.C3_PRM_SIZE,
-}
+    def execute(self, parameter):
+        print("c3 implemented as class")
+        print(parameter)
 
-instruction_table = {
-    "f3": GbInstructions.f3,
-    "c3": GbInstructions.c3,
+# 命令インスタンスの作成
+f3 = F3("F3")
+c3 = C3("C3")
+
+# 命令インスタンステーブル
+instructions = {
+    "f3": f3,
+    "c3": c3,
 }
 
 def main():
@@ -68,12 +75,12 @@ def main():
             pc = pc + 1
 
             # パラメータ読み出し
-            prm_size = parameter_size_table[data.hex()]
-            prm = file.read(prm_size)
-            pc = pc + prm_size
+            parameter_size = instructions.get(data.hex()).getParameterSize()
+            parameter = file.read(parameter_size)
+            pc = pc + parameter_size
 
             # 命令実行
-            instruction_table[data.hex()](prm)
+            instructions.get(data.hex()).execute(parameter)
 
 
 if __name__ == '__main__':
