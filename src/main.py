@@ -23,7 +23,7 @@ class CE(MyInterface):
         self.name = name
 
     def getParameterSize(self):
-        return 0
+        return 0 # tbd
 
     def execute(self, parameter):
         print("ce executed.")
