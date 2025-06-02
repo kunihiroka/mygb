@@ -13,6 +13,22 @@ class MyInterface(ABC):
     def execute(self, parameter):
         pass
 
+# CE命令
+class CE(MyInterface):
+    """
+    ADD A,n
+    Add n + Carry Flag to A.
+    """
+    def __init__(self, name):
+        self.name = name
+
+    def getParameterSize(self):
+        return 0
+
+    def execute(self, parameter):
+        print("ce executed.")
+        print(parameter)
+
 # F3命令
 class F3(MyInterface):
     """
@@ -27,7 +43,7 @@ class F3(MyInterface):
         return 0
 
     def execute(self, parameter):
-        print("f3 implemented as class")
+        print("f3 executed.")
         print(parameter)
 
 # C3命令
@@ -43,7 +59,7 @@ class C3(MyInterface):
         return 2
 
     def execute(self, parameter):
-        print("c3 implemented as class")
+        print("c3 executed.")
         print(parameter)
 
 
@@ -83,6 +99,7 @@ def main():
             pc = pc + 1
 
             # 命令オブジェクトの取得
+            print(instruction_code.hex())
             instruction_object = get_instruction_object(instruction_code.hex())
 
             # パラメータ読み出し
