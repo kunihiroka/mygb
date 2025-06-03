@@ -23,7 +23,7 @@ class CE(MyInterface):
         self.name = name
 
     def getParameterSize(self):
-        return 0 # tbd
+        return 1
 
     def execute(self, parameter):
         print("ce executed.")
@@ -68,6 +68,24 @@ instruction_class_table = {
     "f3": F3,
     "c3": C3
 }
+
+# フラグレジスタ
+class FlagRegister:
+    def __init__(self,Register_Z):
+        self.Register_Z = Register_Z
+
+# レジスタ
+Reg_A = 0
+Reg_B = 0
+Reg_C = 0
+Reg_D = 0
+Reg_E = 0
+Reg_F = 0
+Reg_H = 0
+Reg_L = 0
+pc = 0
+sp = 0
+Reg_Flag = FlagRegister(0)
 
 # 命令インスタンス取得
 def get_instruction_object(instruction_name):
