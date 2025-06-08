@@ -1,13 +1,5 @@
-from abc import ABC, abstractmethod
-# 命令の抽象クラス
-class MyInterface(ABC):
-    @abstractmethod
-    def getParameterSize(self):
-        pass
+from InstructionInterface import MyInterface
 
-    @abstractmethod
-    def execute(self, parameter):
-        pass
 # F3命令
 class F3(MyInterface):
     """

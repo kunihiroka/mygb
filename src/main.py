@@ -1,54 +1,15 @@
-from abc import ABC, abstractmethod
+from Register import Register
 from f3 import F3
+from c3 import C3
+from ce import CE
 import numpy as np
-
-# 命令の抽象クラス
-class MyInterface(ABC):
-    @abstractmethod
-    def getParameterSize(self):
-        pass
-
-    @abstractmethod
-    def execute(self, parameter):
-        pass
-
-# CE命令
-class CE(MyInterface):
-    """
-    ADD A,n
-    Add n + Carry Flag to A.
-    """
-    def __init__(self, name):
-        self.name = name
-
-    def getParameterSize(self):
-        return 1
-
-    def execute(self, parameter):
-        print("ce executed.")
-        print(parameter)
-
-# C3命令
-class C3(MyInterface):
-    """
-    JP nn
-    Jump to address nn.
-    """
-    def __init__(self, name):
-        self.name = name
-
-    def getParameterSize(self):
-        return 2
-
-    def execute(self, parameter):
-        print("c3 executed.")
-        print(parameter)
 
 
 # 命令クラステーブル
 instruction_class_table = {
     "f3": F3,
-    "c3": C3
+    "c3": C3,
+    "ce": CE
 }
 
 # フラグレジスタ
