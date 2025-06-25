@@ -14,4 +14,4 @@ class CE(MyInterface):
 
     def execute(self, parameter):
         print("ce executed.")
-        print(parameter)
+        print("paraemter:",parameter)

@@ -14,5 +14,5 @@ class C3(MyInterface):
 
     def execute(self, parameter):
         print("c3 executed.")
-        print(parameter)
+        print("parameter:", parameter)
 
