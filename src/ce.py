@@ -16,4 +16,6 @@ class CE(MyInterface):
         print("ce executed.")
         print("paraemter:", parameter)
 
-        print("test, showing register", register.GetPC())
+        print("register A before", register.GetA())
+        register.SetA(register.GetA() + int(parameter.hex(), 16))
+        print("register A before", register.GetA())
