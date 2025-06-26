@@ -23,7 +23,6 @@ def get_instruction_object(instruction_name):
         raise ValueError("unknown class")
 
 
-
 def main():
     # レジスタ定義
     pc = np.uint16(0)
