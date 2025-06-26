@@ -54,7 +54,7 @@ def main():
             reg.SetPC(reg.GetPC() + parameter_size)
 
             # 命令実行
-            instruction_object.execute(parameter)
+            instruction_object.execute(parameter, reg)
 
 
 if __name__ == '__main__':

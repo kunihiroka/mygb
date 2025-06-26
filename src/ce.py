@@ -12,6 +12,8 @@ class CE(MyInterface):
     def getParameterSize(self):
         return 1
 
-    def execute(self, parameter):
+    def execute(self, parameter, register):
         print("ce executed.")
-        print("paraemter:",parameter)
+        print("paraemter:", parameter)
+
+        print("test, showing register", register.GetPC())

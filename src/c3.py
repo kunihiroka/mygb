@@ -12,7 +12,7 @@ class C3(MyInterface):
     def getParameterSize(self):
         return 2
 
-    def execute(self, parameter):
+    def execute(self, parameter, register):
         print("c3 executed.")
         print("parameter:", parameter)
 

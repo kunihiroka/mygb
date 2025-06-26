@@ -13,7 +13,7 @@ class F3(MyInterface):
     def getParameterSize(self):
         return 0
 
-    def execute(self, parameter):
+    def execute(self, parameter, register):
         print("f3 executed.")
-        print("parameter:" parameter)
+        print("parameter:", parameter)
 
