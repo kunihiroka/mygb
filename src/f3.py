@@ -15,5 +15,5 @@ class F3(MyInterface):
 
     def execute(self, parameter):
         print("f3 executed.")
-        print("parameter:" parameter)
+        print("parameter:", parameter)
 
