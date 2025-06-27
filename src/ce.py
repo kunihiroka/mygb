@@ -15,6 +15,7 @@ class CE(MyInterface):
     def execute(self, parameter, register):
         print("ce executed.")
         print("paraemter:", parameter)
+        print("parameter hex", parameter.hex())
 
         print("register A before", register.GetA())
         register.SetA(register.GetA() + int(parameter.hex(), 16))
