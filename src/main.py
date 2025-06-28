@@ -1,16 +1,18 @@
 from Register import Register
-from f3 import F3
-from c3 import C3
-from ce import CE
+from instructions.di import DI
+from instructions.jp import JP
+from instructions.add import ADD
+from instructions.ld import LD
 import numpy as np
 
 reg = Register()
 
 # 命令クラステーブル
 instruction_class_table = {
-    "f3": F3,
-    "c3": C3,
-    "ce": CE
+    "f3": DI,
+    "c3": JP,
+    "ce": ADD,
+    "66": LD
 }
 
 # 命令インスタンス取得
@@ -47,13 +49,13 @@ def main():
 
             # パラメータ読み出し
             ## その命令のパラメータサイズを取得
-            parameter_size = instruction_object.getParameterSize()
+            parameter_size = instruction_object.getParameterSize(instruction_code.hex())
             ## パラメータ読み出し
             parameter = file.read(parameter_size)
             reg.SetPC(reg.GetPC() + parameter_size)
 
             # 命令実行
-            instruction_object.execute(parameter, reg)
+            instruction_object.execute(instruction_code.hex(), parameter, reg)
 
 
 if __name__ == '__main__':

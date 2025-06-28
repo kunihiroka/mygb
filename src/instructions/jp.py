@@ -1,7 +1,6 @@
 from InstructionInterface import MyInterface
 
-# C3命令
-class C3(MyInterface):
+class JP(MyInterface):
     """
     JP nn
     Jump to address nn.
@@ -9,10 +8,10 @@ class C3(MyInterface):
     def __init__(self, name):
         self.name = name
 
-    def getParameterSize(self):
+    def getParameterSize(self, opcode):
         return 2
 
-    def execute(self, parameter, register):
+    def execute(self, opcode, parameter, register):
         print("c3 executed.")
         print("parameter:", parameter)
 

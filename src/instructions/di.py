@@ -1,7 +1,6 @@
 from InstructionInterface import MyInterface
 
-# F3命令
-class F3(MyInterface):
+class DI(MyInterface):
     """
     DI:
     This instruction disables interrupts but not immediately.
@@ -10,10 +9,10 @@ class F3(MyInterface):
     def __init__(self, name):
         self.name = name
 
-    def getParameterSize(self):
+    def getParameterSize(self, opcode):
         return 0
 
-    def execute(self, parameter, register):
+    def execute(self, opcode, parameter, register):
         print("f3 executed.")
         print("parameter:", parameter)
 

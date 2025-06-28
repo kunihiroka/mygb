@@ -1,7 +1,6 @@
 from InstructionInterface import MyInterface
 
-# CE命令
-class CE(MyInterface):
+class ADD(MyInterface):
     """
     ADD A,n
     Add n + Carry Flag to A.
@@ -9,14 +8,11 @@ class CE(MyInterface):
     def __init__(self, name):
         self.name = name
 
-    def getParameterSize(self):
+    def getParameterSize(self, opcode):
         return 1
 
-    def execute(self, parameter, register):
+    def execute(self, opcode, parameter, register):
         print("ce executed.")
         print("paraemter:", parameter)
-        print("parameter hex", parameter.hex())
 
-        print("register A before", register.GetA())
         register.SetA(register.GetA() + int(parameter.hex(), 16))
-        print("register A before", register.GetA())
