@@ -2,7 +2,7 @@ MEMORY_SIZE = 65535
 
 class Memory:
     def __init__(self):
-        self.memory = bytearray(MEMORY_SIZE)
+        self.memory = [b'\x00'] * MEMORY_SIZE
 
     def LoadRom(self, rom_path):
         with open(rom_path, 'rb') as file:
@@ -14,5 +14,7 @@ class Memory:
             while count < rom_size:
                 self.memory[count] = file.read(1)       # 1byte 読み出し
                 file.seek(1, 1)                         # 読み出し位置を進める
+                if count<100:
+                    print(count, self.memory[count])
 
                 count += 1

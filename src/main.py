@@ -1,4 +1,5 @@
 from Register import Register
+from Memory import Memory
 from instructions.di import DI
 from instructions.jp import JP
 from instructions.add import ADD
@@ -31,6 +32,10 @@ def main():
 
     # 読み出すROMのパスを設定
     rom_path = './rom/hello-world.gb'
+
+    # ROMファイルの読み込み(Memoryクラス)
+    mem = Memory()
+    mem.LoadRom(rom_path)
 
     # ROMファイルの読み込み
     with open(rom_path, 'rb') as file: # 'rb'で開くとバイナリ読み込みになる。
