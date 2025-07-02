@@ -1,4 +1,4 @@
-MEMORY_SIZE = 65535
+MEMORY_SIZE = 32768
 
 class Memory:
     def __init__(self):
@@ -13,8 +13,8 @@ class Memory:
             count = 0
             while count < rom_size:
                 self.memory[count] = file.read(1)       # 1byte 読み出し
-                file.seek(1, 1)                         # 読み出し位置を進める
-                if count<100:
-                    print(count, self.memory[count])
-
+                # file.seek(1, 1)                       # 読み出し位置を進める
+                                                        # file.readだけで自動的にポインタは1進むので、seekは不要。
                 count += 1
+
+
