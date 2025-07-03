@@ -1,4 +1,4 @@
-MEMORY_SIZE = 32768
+MEMORY_SIZE = 65535
 
 class Memory:
     def __init__(self):
