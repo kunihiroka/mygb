@@ -5,7 +5,7 @@ MEMORY_SIZE = 65535
 # C000-DFFF 8kb Internal RAM
 # E000-FDFF Echo of 8kb internal RAM
 # FE00-FEBF Sprite Attrib Memory (0AM)
-# FEA0-FEFF Empty but unsusabel for I/O
+# FEA0-FEFF Empty but unusable for I/O
 # FF00-FE4D I/O ports
 # FE4C-FF7F Empty but unusable for I/O
 # FF80-FFFF Internal RAM
