@@ -1,5 +1,15 @@
 MEMORY_SIZE = 65535
 
+# 0000-7FFF ROM
+# 8000-BFFF 8kb Video RAM
+# C000-DFFF 8kb Internal RAM
+# E000-FDFF Echo of 8kb internal RAM
+# FE00-FEBF Sprite Attrib Memory (0AM)
+# FEA0-FEFF Empty but unsusabel for I/O
+# FF00-FE4D I/O ports
+# FE4C-FF7F Empty but unusable for I/O
+# FF80-FFFF Internal RAM
+
 class Memory:
     def __init__(self):
         self.memory = [b'\x00'] * MEMORY_SIZE
