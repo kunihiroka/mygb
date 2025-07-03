@@ -7,6 +7,7 @@ from instructions.ld import LD
 import numpy as np
 
 reg = Register()
+mem = Memory()
 
 # 命令クラステーブル
 instruction_class_table = {
@@ -60,7 +61,7 @@ def main():
             reg.SetPC(reg.GetPC() + parameter_size)
 
             # 命令実行
-            instruction_object.execute(instruction_code.hex(), parameter, reg)
+            instruction_object.execute(instruction_code.hex(), parameter, reg, mem)
 
 
 if __name__ == '__main__':

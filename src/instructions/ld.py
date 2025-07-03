@@ -20,7 +20,7 @@ class LD(MyInterface):
 
         return parameter_size
 
-    def execute(self, opcode, parameter, register):
+    def execute(self, opcode, parameter, register, memory):
         print("paraemter:", parameter)
 
         if opcode == "66":

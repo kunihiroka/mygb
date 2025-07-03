@@ -11,7 +11,7 @@ class JP(MyInterface):
     def getParameterSize(self, opcode):
         return 2
 
-    def execute(self, opcode, parameter, register):
+    def execute(self, opcode, parameter, register, memory):
         print("c3 executed.")
         print("parameter:", parameter)
 

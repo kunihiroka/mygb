@@ -11,7 +11,7 @@ class ADD(MyInterface):
     def getParameterSize(self, opcode):
         return 1
 
-    def execute(self, opcode, parameter, register):
+    def execute(self, opcode, parameter, register, memory):
         print("ce executed.")
         print("paraemter:", parameter)
 

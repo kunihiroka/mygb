@@ -6,5 +6,5 @@ class MyInterface(ABC):
         pass
 
     @abstractmethod
-    def execute(self, opcode, parameter, register):
+    def execute(self, opcode, parameter, register, memory):
         pass

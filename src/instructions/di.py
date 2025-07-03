@@ -12,7 +12,7 @@ class DI(MyInterface):
     def getParameterSize(self, opcode):
         return 0
 
-    def execute(self, opcode, parameter, register):
+    def execute(self, opcode, parameter, register, memory):
         print("f3 executed.")
         print("parameter:", parameter)
 
