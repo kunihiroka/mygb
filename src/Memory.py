@@ -27,4 +27,15 @@ class Memory:
                                                         # file.readだけで自動的にポインタは1進むので、seekは不要。
                 count += 1
 
+    def SetMemory(self, address, data):
+        if address < MEMORY_SIZE:
+            self.memory[address] = data
+        else:
+            print("Error: Invalid Memory Access")
+
+    def GetMemory(self, address, data):
+        if address < MEMORY_SIZE:
+            self.memory[address] = data
+        else:
+            print("Error: Invalid Memory Access")
 
