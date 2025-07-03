@@ -25,6 +25,7 @@ class LD(MyInterface):
 
         if opcode == "66":
             # LD H,(HL)
+            memory.GetMemory(register.Get
             print("66 executed.")
         else:
             print("error.")

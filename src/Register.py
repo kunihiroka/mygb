@@ -63,6 +63,13 @@ class Register:
     def GetL(self):
         return self.l
 
+    def SetHL(self, value):
+        self.h = (value >> 8) & 0xFF
+        self.l = value & 0xFF
+
+    def GetHL(self):
+        return (self.h << 8) | self.l
+
     def SetSP(self,value):
         self.sp= value & 0xFFFF    # 2byteでマスク
 
@@ -87,16 +94,5 @@ class Register:
     def GetN(self):
         return self.n
 
-    def SetH(self,value):
-        self.h = value & 0x1    # 1bitでマスク
-
-    def GetH(self):
-        return self.h
-
-    def SetC(self,value):
-        self.c = value & 0x1    # 1bitでマスク
-
-    def GetC(self):
-        return self.c
 
 
