@@ -13,5 +13,6 @@ class NOP(MyInterface):
         return 0
 
     def execute(self, opcode, parameter, register, memory):
-        print("00 executed.")
+        tmp = 1
+        # print("00 executed.")
 
