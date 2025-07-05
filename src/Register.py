@@ -8,7 +8,7 @@ class Register:
         self.f = 0
         self.h = 0
         self.l = 0
-        self.sp = 0
+        self.sp = int('FFFE',16)
         self.pc = 0
         self.z = 0
         self.n = 0

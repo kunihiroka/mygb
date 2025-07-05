@@ -33,9 +33,9 @@ class Memory:
         else:
             print("Error: Invalid Memory Access")
 
-    def GetMemory(self, address, data):
+    def GetMemory(self, address):
         if address < MEMORY_SIZE:
-            self.memory[address] = data
+            return self.memory[address]
         else:
             print("Error: Invalid Memory Access")
 

@@ -4,6 +4,8 @@ from instructions.di import DI
 from instructions.jp import JP
 from instructions.add import ADD
 from instructions.ld import LD
+from instructions.call import CALL
+from instructions.nop import NOP
 import numpy as np
 
 reg = Register()
@@ -14,7 +16,9 @@ instruction_class_table = {
     "f3": DI,
     "c3": JP,
     "ce": ADD,
-    "66": LD
+    "66": LD,
+    "cc": CALL,
+    "00": NOP,
 }
 
 # 命令インスタンス取得
@@ -62,6 +66,7 @@ def main():
 
             # 命令実行
             instruction_object.execute(instruction_code.hex(), parameter, reg, mem)
+            print(reg.GetH())
 
 
 if __name__ == '__main__':
