@@ -66,7 +66,6 @@ def main():
 
             # 命令実行
             instruction_object.execute(instruction_code.hex(), parameter, reg, mem)
-            print(reg.GetH())
 
 
 if __name__ == '__main__':

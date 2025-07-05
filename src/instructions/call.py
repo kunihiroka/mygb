@@ -30,6 +30,7 @@ class CALL(MyInterface):
             register.SetSP(register.GetSP() - 1)
             memory.SetMemory(register.GetSP(), register.GetPC() + 1)
             register.SetPC(int(parameter.hex(),16))
+            print("PC",register.GetPC())
             print("cc executed.")
         else:
             print("undefined opcode")
