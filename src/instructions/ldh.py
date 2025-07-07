@@ -22,8 +22,8 @@ class LDH(MyInterface):
             Put memory address $FF00+n into A
             FF00-FF8F     I/O Ports
             """
-            address = int("ff00".hex(),16) + parameter
-            register.SetA(memory.Get(address))
+            address = 0xff00 + int(parameter.hex(),16)
+            register.SetA(int(memory.GetMemory(address).hex(),16))
             print("f0 executed.")
         else:
             print("error.")

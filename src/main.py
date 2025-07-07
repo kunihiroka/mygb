@@ -6,6 +6,7 @@ from instructions.add import ADD
 from instructions.ld import LD
 from instructions.call import CALL
 from instructions.nop import NOP
+from instructions.ldh import LDH
 import numpy as np
 
 reg = Register()
@@ -19,6 +20,7 @@ instruction_class_table = {
     "66": LD,
     "cc": CALL,
     "00": NOP,
+    "f0": LDH,
 }
 
 # 命令インスタンス取得
