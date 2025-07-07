@@ -14,13 +14,13 @@ mem = Memory()
 
 # 命令クラステーブル
 instruction_class_table = {
-    "f3": DI,
-    "c3": JP,
-    "ce": ADD,
-    "66": LD,
-    "cc": CALL,
     "00": NOP,
+    "66": LD,
+    "c3": JP,
+    "cc": CALL,
+    "ce": ADD,
     "f0": LDH,
+    "f3": DI,
 }
 
 # 命令インスタンス取得
