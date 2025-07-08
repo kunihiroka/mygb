@@ -20,7 +20,22 @@ class CP(MyInterface):
     def execute(self, opcode, parameter, register, memory):
         print("parameter:", parameter)
 
-        if opcode == "f0":
+        if opcode == "fe":
+            # ゼロフラグ、キャリーフラグ
+            temp = register.GetA() - parameter
+            if temp == 0:
+                register.SetZ(1)
+            elif temp < 0:
+                register.SetC(1)
+            else: # temp < 0
+
+            # ハーフキャリアフラグ
+            if ((0x0F & register.GetA()) < (0x0F & parameter)):
+                register.SetH(1)
+            
+            # Subtractフラグ
+            register.SetN(1)
+
             print("fe executed.")
         else:
             print("error.")
