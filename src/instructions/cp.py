@@ -28,10 +28,13 @@ class CP(MyInterface):
             elif temp < 0:
                 register.SetC(1)
             else: # temp < 0
+                pass
 
             # ハーフキャリアフラグ
             if ((0x0F & register.GetA()) < (0x0F & parameter)):
                 register.SetH(1)
+            else:
+                pass
             
             # Subtractフラグ
             register.SetN(1)
