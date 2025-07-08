@@ -22,7 +22,7 @@ class CP(MyInterface):
 
         if opcode == "fe":
             # ゼロフラグ、キャリーフラグ
-            temp = register.GetA() - parameter
+            temp = register.GetA() - int(parameter.hex(),16)
             if temp == 0:
                 register.SetZ(1)
             elif temp < 0:
@@ -31,7 +31,7 @@ class CP(MyInterface):
                 pass
 
             # ハーフキャリアフラグ
-            if ((0x0F & register.GetA()) < (0x0F & parameter)):
+            if ((0x0F & register.GetA()) < (0x0F & int(parameter.hex(),16))):
                 register.SetH(1)
             else:
                 pass
