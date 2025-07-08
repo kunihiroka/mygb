@@ -25,16 +25,19 @@ class CP(MyInterface):
             temp = register.GetA() - int(parameter.hex(),16)
             if temp == 0:
                 register.SetZ(1)
+                register.SetC(0)
             elif temp < 0:
+                register.SetZ(0)
                 register.SetC(1)
-            else: # temp < 0
-                pass
+            else: # temp > 0
+                register.SetZ(0)
+                register.SetC(0)
 
             # ハーフキャリアフラグ
             if ((0x0F & register.GetA()) < (0x0F & int(parameter.hex(),16))):
                 register.SetH(1)
             else:
-                pass
+                register.SetH(0)
             
             # Subtractフラグ
             register.SetN(1)
