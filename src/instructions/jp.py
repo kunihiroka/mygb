@@ -15,5 +15,6 @@ class JP(MyInterface):
         register.SetPC(int(parameter.hex(),16))
         print("c3 executed.")
         print("parameter:", parameter)
+        clock = 12
 
-        return 0
+        return clock

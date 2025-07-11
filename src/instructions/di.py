@@ -15,5 +15,6 @@ class DI(MyInterface):
     def execute(self, opcode, parameter, register, memory):
         print("f3 executed.")
         print("parameter:", parameter)
+        clock = 4
         
-        return 0
+        return clock

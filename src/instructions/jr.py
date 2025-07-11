@@ -27,8 +27,10 @@ class JR(MyInterface):
                 register.SetPC(register.GetPC() + int(parameter.hex(),16))
 
             print("38 executed.")
+            clock = 8
         else:
             print("error.")
+            clock = 0
 
-        return 0
+        return clock
 

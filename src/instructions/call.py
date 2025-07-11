@@ -32,8 +32,10 @@ class CALL(MyInterface):
             register.SetPC(int(parameter.hex(),16))
             print("PC",register.GetPC())
             print("cc executed.")
+            clock = 12
         else:
             print("undefined opcode")
+            clock = 0
 
-        return 0
+        return clock
 

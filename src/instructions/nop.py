@@ -14,6 +14,7 @@ class NOP(MyInterface):
 
     def execute(self, opcode, parameter, register, memory):
         tmp = 1
-        # print("00 executed.")
+        print("00 executed.")
+        clock = 4
 
-    return 0
+        return clock

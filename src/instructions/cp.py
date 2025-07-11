@@ -43,8 +43,10 @@ class CP(MyInterface):
             register.SetN(1)
 
             print("fe executed.")
+            clock = 8
         else:
+            clock = 0
             print("error.")
         
-        return 0
+        return clock
 

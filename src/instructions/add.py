@@ -16,6 +16,7 @@ class ADD(MyInterface):
         print("paraemter:", parameter)
 
         register.SetA(register.GetA() + int(parameter.hex(), 16))
+        clock = 8
 
-        return 0
+        return clock
 

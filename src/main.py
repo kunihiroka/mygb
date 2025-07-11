@@ -56,6 +56,7 @@ def main():
         reg.SetPC(int('100', 16))
 
         while True:                             # とりま無限ループ。
+            # --- CPU ---
             if clock == 0:                      # clockカウンタが0(CPU空き)の場合
                 # 次の命令実行
                 file.seek(reg.GetPC())
@@ -81,6 +82,8 @@ def main():
             # クロック消費
             if clock > 0:
                 clock -= 1
+
+            # --- ペリフェラル ---
 
 if __name__ == '__main__':
     main()

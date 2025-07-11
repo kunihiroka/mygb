@@ -29,7 +29,9 @@ class LD(MyInterface):
             temp2 = temp1 + int(memory.GetMemory(register.GetHL()).hex(),16)
             register.SetH(temp2)
             print("66 executed.")
+            clock = 8
         else:
             print("error.")
+            clock = 0
 
-        return 0
+        return clock

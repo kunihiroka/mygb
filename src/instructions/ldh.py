@@ -25,7 +25,9 @@ class LDH(MyInterface):
             address = 0xff00 + int(parameter.hex(),16)
             register.SetA(int(memory.GetMemory(address).hex(),16))
             print("f0 executed.")
+            clock = 12
         else:
             print("error.")
+            clock = 0
 
-        return 0
+        return clock
