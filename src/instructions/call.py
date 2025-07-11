@@ -35,3 +35,5 @@ class CALL(MyInterface):
         else:
             print("undefined opcode")
 
+        return 0
+

@@ -16,3 +16,4 @@ class NOP(MyInterface):
         tmp = 1
         # print("00 executed.")
 
+    return 0

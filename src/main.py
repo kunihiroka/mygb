@@ -8,6 +8,7 @@ from instructions.call import CALL
 from instructions.nop import NOP
 from instructions.ldh import LDH
 from instructions.cp import CP
+from instructions.jr import JR
 import numpy as np
 
 reg = Register()
@@ -16,6 +17,7 @@ mem = Memory()
 # 命令クラステーブル
 instruction_class_table = {
     "00": NOP,
+    "38": JR,
     "66": LD,
     "c3": JP,
     "cc": CALL,
@@ -36,6 +38,9 @@ def get_instruction_object(instruction_name):
 
 
 def main():
+    # クロック変数
+    clock = 0
+
     # レジスタ定義
     pc = np.uint16(0)
 
@@ -51,26 +56,31 @@ def main():
         reg.SetPC(int('100', 16))
 
         while True:                             # とりま無限ループ。
-            file.seek(reg.GetPC())
+            if clock == 0:                      # clockカウンタが0(CPU空き)の場合
+                # 次の命令実行
+                file.seek(reg.GetPC())
 
-            # 命令コード読み出し
-            instruction_code = file.read(1)          # 1byte読み出し
-            reg.SetPC(reg.GetPC() + 1)
+                # 命令コード読み出し
+                instruction_code = file.read(1)          # 1byte読み出し
+                reg.SetPC(reg.GetPC() + 1)
 
-            # 命令オブジェクトの取得
-            print("instruction code:", instruction_code.hex())
-            instruction_object = get_instruction_object(instruction_code.hex())
+                # 命令オブジェクトの取得
+                print("instruction code:", instruction_code.hex())
+                instruction_object = get_instruction_object(instruction_code.hex())
 
-            # パラメータ読み出し
-            ## その命令のパラメータサイズを取得
-            parameter_size = instruction_object.getParameterSize(instruction_code.hex())
-            ## パラメータ読み出し
-            parameter = file.read(parameter_size)
-            reg.SetPC(reg.GetPC() + parameter_size)
+                # パラメータ読み出し
+                ## その命令のパラメータサイズを取得
+                parameter_size = instruction_object.getParameterSize(instruction_code.hex())
+                ## パラメータ読み出し
+                parameter = file.read(parameter_size)
+                reg.SetPC(reg.GetPC() + parameter_size)
 
-            # 命令実行
-            instruction_object.execute(instruction_code.hex(), parameter, reg, mem)
-
+                # 命令実行
+                clock = instruction_object.execute(instruction_code.hex(), parameter, reg, mem)
+            
+            # クロック消費
+            if clock > 0:
+                clock -= 1
 
 if __name__ == '__main__':
     main()

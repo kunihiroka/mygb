@@ -45,4 +45,6 @@ class CP(MyInterface):
             print("fe executed.")
         else:
             print("error.")
+        
+        return 0
 

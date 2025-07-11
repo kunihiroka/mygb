@@ -16,3 +16,4 @@ class JP(MyInterface):
         print("c3 executed.")
         print("parameter:", parameter)
 
+        return 0

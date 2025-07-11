@@ -32,3 +32,4 @@ class LD(MyInterface):
         else:
             print("error.")
 
+        return 0

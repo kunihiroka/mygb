@@ -1,12 +1,16 @@
 from InstructionInterface import MyInterface
 
-# LDH命令
-class LDH(MyInterface):
+# JR命令
+class JR(MyInterface):
+    """
+    if following condition is true, then add n to current address and jump to it
+    """
     def __init__(self, name):
         self.name = name
 
     def getParameterSize(self, opcode):
-        if opcode == "f0":
+        if opcode == "38":
+            # JR C,*
             parameter_size = 1
         else:
             print("undefined opcode")
@@ -17,15 +21,14 @@ class LDH(MyInterface):
     def execute(self, opcode, parameter, register, memory):
         print("paraemter:", parameter)
 
-        if opcode == "f0":
-            """
-            Put memory address $FF00+n into A
-            FF00-FF8F     I/O Ports
-            """
-            address = 0xff00 + int(parameter.hex(),16)
-            register.SetA(int(memory.GetMemory(address).hex(),16))
-            print("f0 executed.")
+        if opcode == "38":
+            # JR C,*
+            if register.GetC() == 1:
+                register.SetPC(register.GetPC() + int(parameter.hex(),16))
+
+            print("38 executed.")
         else:
             print("error.")
 
         return 0
+

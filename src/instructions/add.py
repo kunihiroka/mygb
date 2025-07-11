@@ -16,3 +16,6 @@ class ADD(MyInterface):
         print("paraemter:", parameter)
 
         register.SetA(register.GetA() + int(parameter.hex(), 16))
+
+        return 0
+
