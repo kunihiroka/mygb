@@ -12,19 +12,17 @@ MEMORY_SIZE = 65535
 
 class Memory:
     def __init__(self):
-        self.memory = [b'\x00'] * MEMORY_SIZE
+        self.memory = [0x00] * MEMORY_SIZE
 
     def LoadRom(self, rom_path):
         with open(rom_path, 'rb') as file:
             file.seek(0, 2)                 # ファイルの末尾に移動(2は末尾からの相対位置)
-            rom_size = file.tell()      # 現在位置(=ファイルサイズ)
+            rom_size = file.tell()          # 現在位置(=ファイルサイズ)
             file.seek(0)                    # 先頭に移動
             
             count = 0
             while count < rom_size:
-                self.memory[count] = file.read(1)       # 1byte 読み出し
-                # file.seek(1, 1)                       # 読み出し位置を進める
-                                                        # file.readだけで自動的にポインタは1進むので、seekは不要。
+                self.memory[count] = int(file.read(1).hex(),16)       # 1byte 読み出し。整数型に変換。
                 count += 1
 
     def SetMemory(self, address, data):

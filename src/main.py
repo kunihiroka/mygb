@@ -31,7 +31,7 @@ instruction_class_table = {
 
 # 命令インスタンス取得
 def get_instruction_object(instruction_name):
-    instruction_class = instruction_class_table.get(instruction_name)
+    instruction_class = instruction_class_table.get(format(instruction_name, 'x'))
 
     if instruction_class:
         return instruction_class("inst")
@@ -55,31 +55,40 @@ def main():
 
     # ROMファイルの読み込み
     with open(rom_path, 'rb') as file: # 'rb'で開くとバイナリ読み込みになる。
-        reg.SetPC(int('100', 16))
+        reg.SetPC(0x100)
 
         while True:                             # とりま無限ループ。
             # --- CPU ---
             if clock == 0:                      # clockカウンタが0(CPU空き)の場合
                 # 次の命令実行
-                file.seek(reg.GetPC())
+                # file.seek(reg.GetPC())
 
                 # 命令コード読み出し
-                instruction_code = file.read(1)          # 1byte読み出し
+                instruction_code = mem.GetMemory(reg.GetPC())
+                # instruction_code = file.read(1)          # 1byte読み出し
                 reg.SetPC(reg.GetPC() + 1)
 
                 # 命令オブジェクトの取得
-                print("instruction code:", instruction_code.hex())
-                instruction_object = get_instruction_object(instruction_code.hex())
+                print("instruction code:", instruction_code)
+                instruction_object = get_instruction_object(instruction_code)
 
                 # パラメータ読み出し
                 ## その命令のパラメータサイズを取得
-                parameter_size = instruction_object.getParameterSize(instruction_code.hex())
+                parameter_size = instruction_object.getParameterSize(instruction_code)
                 ## パラメータ読み出し
-                parameter = file.read(parameter_size)
-                reg.SetPC(reg.GetPC() + parameter_size)
+                parameter = 0x00
+                shift = 0
+                while parameter_size > 0:
+                    parameter = parameter << (shift*8)
+                    parameter |= mem.GetMemory(reg.GetPC())
+                    reg.SetPC(reg.GetPC() + 1)
+                    parameter_size -= 1
+                    shift += 1
+                # parameter = file.read(parameter_size)
+                # reg.SetPC(reg.GetPC() + parameter_size)
 
                 # 命令実行
-                clock = instruction_object.execute(instruction_code.hex(), parameter, reg, mem)
+                clock = instruction_object.execute(instruction_code, parameter, reg, mem)
             
             # クロック消費
             if clock > 0:
