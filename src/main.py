@@ -79,11 +79,11 @@ def main():
                 parameter = 0x00
                 shift = 0
                 while parameter_size > 0:
-                    parameter = parameter << (shift*8)
-                    parameter |= mem.GetMemory(reg.GetPC())
-                    reg.SetPC(reg.GetPC() + 1)
-                    parameter_size -= 1
-                    shift += 1
+                    parameter = parameter << (shift*8)              # シフトして読み出し先を空ける
+                    parameter |= mem.GetMemory(reg.GetPC())         # パラメータ読み出し
+                    reg.SetPC(reg.GetPC() + 1)                      # プログラムカウンタ更新
+                    parameter_size -= 1                             # ループカウンタデクリメント
+                    shift += 1                                      # シフトサイズカウンタデクリメント
                 # parameter = file.read(parameter_size)
                 # reg.SetPC(reg.GetPC() + parameter_size)
 
