@@ -1,5 +1,6 @@
 from Register import Register
 from Memory import Memory
+from lcdc import LCDC
 from instructions.di import DI
 from instructions.jp import JP
 from instructions.add import ADD
@@ -13,6 +14,7 @@ import numpy as np
 
 reg = Register()
 mem = Memory()
+lcdc = LCDC()
 
 # 命令クラステーブル
 instruction_class_table = {
@@ -84,6 +86,8 @@ def main():
                 clock -= 1
 
             # --- ペリフェラル ---
+            ## LCDC
+            lcdc.scan(reg, mem)
 
 if __name__ == '__main__':
     main()
