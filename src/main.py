@@ -20,6 +20,7 @@ lcdc = LCDC()
 instruction_class_table = {
     "00": NOP,
     "38": JR,
+    "44": LD,
     "66": LD,
     "68": LD,
     "c3": JP,
@@ -32,6 +33,7 @@ instruction_class_table = {
 
 # 命令インスタンス取得
 def get_instruction_object(instruction_name):
+    print(format(instruction_name, 'x'))
     instruction_class = instruction_class_table.get(format(instruction_name, 'x'))
 
     if instruction_class:
