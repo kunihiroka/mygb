@@ -26,7 +26,7 @@ class LD(MyInterface):
         if opcode == "66":
             # LD H,(HL)
             temp1 = register.GetH()
-            temp2 = temp1 + int(memory.GetMemory(register.GetHL()).hex(),16)
+            temp2 = temp1 + memory.GetMemory(register.GetHL())
             register.SetH(temp2)
             print("66 executed.")
             clock = 8

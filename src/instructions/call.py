@@ -29,7 +29,7 @@ class CALL(MyInterface):
             # CALL Z, nn
             register.SetSP(register.GetSP() - 1)
             memory.SetMemory(register.GetSP(), register.GetPC() + 1)
-            register.SetPC(int(parameter.hex(),16))
+            register.SetPC(parameter)
             print("PC",register.GetPC())
             print("cc executed.")
             clock = 12

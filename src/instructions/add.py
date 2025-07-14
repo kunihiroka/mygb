@@ -15,7 +15,7 @@ class ADD(MyInterface):
         print("ce executed.")
         print("paraemter:", parameter)
 
-        register.SetA(register.GetA() + int(parameter.hex(), 16))
+        register.SetA(register.GetA() + parameter)
         clock = 8
 
         return clock

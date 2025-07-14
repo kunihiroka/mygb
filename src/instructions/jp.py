@@ -12,7 +12,7 @@ class JP(MyInterface):
         return 2
 
     def execute(self, opcode, parameter, register, memory):
-        register.SetPC(int(parameter.hex(),16))
+        register.SetPC(parameter)
         print("c3 executed.")
         print("parameter:", parameter)
         clock = 12

@@ -24,7 +24,7 @@ class JR(MyInterface):
         if opcode == "38":
             # JR C,*
             if register.GetC() == 1:
-                register.SetPC(register.GetPC() + int(parameter.hex(),16))
+                register.SetPC(register.GetPC() + parameter)
 
             print("38 executed.")
             clock = 8
