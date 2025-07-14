@@ -14,7 +14,7 @@ class CALL(MyInterface):
         self.name = name
 
     def getParameterSize(self, opcode):
-        if opcode == "cc":
+        if opcode == 0xcc:
             # CALL Z, nn
             parameter_size = 2
         else:
@@ -25,7 +25,7 @@ class CALL(MyInterface):
 
     def execute(self, opcode, parameter, register, memory):
         print("paraemter:", parameter.hex())
-        if opcode == "cc":
+        if opcode == 0xcc:
             # CALL Z, nn
             register.SetSP(register.GetSP() - 1)
             memory.SetMemory(register.GetSP(), register.GetPC() + 1)

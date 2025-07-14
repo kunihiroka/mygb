@@ -33,7 +33,6 @@ instruction_class_table = {
 
 # 命令インスタンス取得
 def get_instruction_object(instruction_name):
-    print(format(instruction_name, 'x'))
     instruction_class = instruction_class_table.get(format(instruction_name, 'x'))
 
     if instruction_class:
@@ -72,7 +71,7 @@ def main():
                 reg.SetPC(reg.GetPC() + 1)
 
                 # 命令オブジェクトの取得
-                print("instruction code:", instruction_code)
+                print("instruction code:", format(instruction_code, 'x'))
                 instruction_object = get_instruction_object(instruction_code)
 
                 # パラメータ読み出し

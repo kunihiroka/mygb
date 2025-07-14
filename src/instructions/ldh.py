@@ -6,7 +6,7 @@ class LDH(MyInterface):
         self.name = name
 
     def getParameterSize(self, opcode):
-        if opcode == "f0":
+        if opcode == 0xf0:
             parameter_size = 1
         else:
             print("undefined opcode")
@@ -17,7 +17,7 @@ class LDH(MyInterface):
     def execute(self, opcode, parameter, register, memory):
         print("paraemter:", parameter)
 
-        if opcode == "f0":
+        if opcode == 0xf0:
             """
             Put memory address $FF00+n into A
             FF00-FF8F     I/O Ports

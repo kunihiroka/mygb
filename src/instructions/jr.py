@@ -9,7 +9,7 @@ class JR(MyInterface):
         self.name = name
 
     def getParameterSize(self, opcode):
-        if opcode == "38":
+        if opcode == 0x38:
             # JR C,*
             parameter_size = 1
         else:
@@ -21,7 +21,7 @@ class JR(MyInterface):
     def execute(self, opcode, parameter, register, memory):
         print("paraemter:", parameter)
 
-        if opcode == "38":
+        if opcode == 0x38:
             # JR C,*
             if register.GetC() == 1:
                 register.SetPC(register.GetPC() + parameter)

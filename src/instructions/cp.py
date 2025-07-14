@@ -9,7 +9,7 @@ class CP(MyInterface):
         self.name = name
 
     def getParameterSize(self, opcode):
-        if opcode == "fe":
+        if opcode == 0xfe:
             parameter_size = 1
         else:
             print("undefined opcode")
@@ -20,7 +20,7 @@ class CP(MyInterface):
     def execute(self, opcode, parameter, register, memory):
         print("parameter:", parameter)
 
-        if opcode == "fe":
+        if opcode == 0xfe:
             # ゼロフラグ、キャリーフラグ
             temp = register.GetA() - parameter
             if temp == 0:
