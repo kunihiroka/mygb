@@ -14,6 +14,8 @@ class LD(MyInterface):
         if opcode == "66":
             # LD H,(HL)
             parameter_size = 0
+        elif opcode == "68":
+            parameter_size = 0
         else:
             print("undefined opcode")
             parameter_size = 0
@@ -30,6 +32,11 @@ class LD(MyInterface):
             register.SetH(temp2)
             print("66 executed.")
             clock = 8
+        elif opcode == "68":
+            # LD L,B
+            register.SetL(register.GetB())
+            print("68 executed.")
+            clock = 4
         else:
             print("error.")
             clock = 0

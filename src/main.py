@@ -21,6 +21,7 @@ instruction_class_table = {
     "00": NOP,
     "38": JR,
     "66": LD,
+    "68": LD,
     "c3": JP,
     "cc": CALL,
     "ce": ADD,

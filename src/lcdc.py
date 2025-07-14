@@ -9,7 +9,7 @@ class LCDC:
         ly += 1
 
         # The values between 144 and 153 indicate the V-Blank period.
-        if ly > 153
+        if ly > 153:
             ly = 0
 
         memory.SetMemory(0xff44,ly)
