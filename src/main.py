@@ -10,6 +10,7 @@ from instructions.nop import NOP
 from instructions.ldh import LDH
 from instructions.cp import CP
 from instructions.jr import JR
+from instructions.xor import XOR
 import numpy as np
 
 reg = Register()
@@ -23,6 +24,7 @@ instruction_class_table = {
     "44": LD,
     "66": LD,
     "68": LD,
+    "af": XOR,
     "c3": JP,
     "cc": CALL,
     "ce": ADD,
