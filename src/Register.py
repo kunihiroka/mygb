@@ -69,6 +69,27 @@ class Register:
 
     def GetHL(self):
         return (self.h << 8) | self.l
+    
+    def SetAF(self, value):
+        self.a = (value >> 8) & 0xFF
+        self.f = value & 0xFF
+    
+    def GetAF(self):
+        return (self.a << 8) | self.f
+    
+    def SetBC(self, value):
+        self.b = (value >> 8) & 0xFF
+        self.c = value & 0xFF
+    
+    def GetBC(self):
+        return (self.b << 8) | self.c
+
+    def SetDE(self, value):
+        self.d = (value >> 8) & 0xFF
+        self.e = value & 0xFF
+    
+    def GetDE(self):
+        return (self.d << 8) | self.e
 
     def SetSP(self,value):
         self.sp= value & 0xFFFF    # 2byteでマスク
