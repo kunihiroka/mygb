@@ -5,6 +5,7 @@ from instructions.di import DI
 from instructions.jp import JP
 from instructions.add import ADD
 from instructions.ld import LD
+from instructions.ldi import LDI
 from instructions.call import CALL
 from instructions.nop import NOP
 from instructions.ldh import LDH
@@ -24,6 +25,7 @@ instruction_class_table = {
     "11": LD,
     "1a": LD,
     "21": LD,
+    "22": LDI,
     "38": JR,
     "44": LD,
     "66": LD,
