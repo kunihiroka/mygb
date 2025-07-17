@@ -39,7 +39,7 @@ instruction_class_table = {
 
 # 命令インスタンス取得
 def get_instruction_object(instruction_name):
-    instruction_class = instruction_class_table.get(format(instruction_name, 'x'))
+    instruction_class = instruction_class_table.get(format(instruction_name, '02x')) # 0x2にすると2桁の文字列になる。
 
     if instruction_class:
         return instruction_class("inst")
