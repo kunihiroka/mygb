@@ -20,6 +20,7 @@ lcdc = LCDC()
 # 命令クラステーブル
 instruction_class_table = {
     "00": NOP,
+    "01": LD,
     "11": LD,
     "21": LD,
     "38": JR,

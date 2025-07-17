@@ -11,7 +11,10 @@ class LD(MyInterface):
         self.name = name
 
     def getParameterSize(self, opcode):
-        if opcode == 0x11:
+        if opcode == 0x01:
+            # LD BC, nn
+            parameter_size = 2
+        elif opcode == 0x11:
             # LD DE, nn
             parameter_size = 2
         elif opcode == 0x21:
@@ -34,7 +37,11 @@ class LD(MyInterface):
     def execute(self, opcode, parameter, register, memory):
         print("paraemter:", parameter)
 
-        if opcode == 0x11:
+        if opcode == 0x01:
+            # LD BC,nn
+            register.SetBC(parameter)
+            clock = 12
+        elif opcode == 0x11:
             # LD DE,nn
             register.SetDE(parameter)
             clock = 12
