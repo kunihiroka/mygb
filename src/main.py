@@ -14,6 +14,7 @@ from instructions.jr import JR
 from instructions.xor import XOR
 from instructions.or_ import OR
 from instructions.inc import INC
+from instructions.dec import DEC
 import numpy as np
 
 reg = Register()
@@ -24,6 +25,7 @@ lcdc = LCDC()
 instruction_class_table = {
     "00": NOP,
     "01": LD,
+    "0d": DEC,
     "11": LD,
     "13": INC,
     "20": JR,
@@ -80,12 +82,13 @@ def main():
                 # file.seek(reg.GetPC())
 
                 # 命令コード読み出し
+                print("PC:", format(reg.GetPC(),'04x'))
                 instruction_code = mem.GetMemory(reg.GetPC())
                 # instruction_code = file.read(1)          # 1byte読み出し
                 reg.SetPC(reg.GetPC() + 1)
 
                 # 命令オブジェクトの取得
-                print("instruction code:", format(instruction_code, 'x'))
+                print("instruction code:", format(instruction_code, '02x'))
                 instruction_object = get_instruction_object(instruction_code)
 
                 # パラメータ読み出し
