@@ -12,7 +12,7 @@ from instructions.ldh import LDH
 from instructions.cp import CP
 from instructions.jr import JR
 from instructions.xor import XOR
-from instructions.or import OR
+from instructions.or_ import OR
 from instructions.inc import INC
 import numpy as np
 
@@ -26,6 +26,7 @@ instruction_class_table = {
     "01": LD,
     "11": LD,
     "13": INC,
+    "20": JR,
     "1a": LD,
     "21": LD,
     "22": LDI,
