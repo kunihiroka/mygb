@@ -1,13 +1,14 @@
 from InstructionInterface import MyInterface
 
-# XOR命令
-# Logical exclusive OR n with register A, result in A.
-class XOR(MyInterface):
+# OR命令
+# Logical OR n with register A. result in A.
+
+class OR(MyInterface):
     def __init__(self, name):
         self.name = name
 
     def getParameterSize(self, opcode):
-        if opcode == 0xaf:
+        if opcode == 0xb1:
             parameter_size = 0
         else:
             print("undefined opcode")
@@ -18,11 +19,11 @@ class XOR(MyInterface):
     def execute(self, opcode, parameter, register, memory):
         print("paraemter:", parameter)
 
-        if opcode == 0xaf:
+        if opcode == 0xb1:
             """
-            A xor A
+            A or C
             """
-            temp = register.GetA() ^ register.GetA()
+            temp = register.GetA() | register.GetC()
             register.SetA(temp)
 
             if temp == 0:
@@ -34,7 +35,7 @@ class XOR(MyInterface):
             register.SetH(0)
             register.SetC(0)
 
-            print("af executed.")
+            print("b1 executed.")
             clock = 4
         else:
             print("error.")
