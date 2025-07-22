@@ -25,6 +25,7 @@ lcdc = LCDC()
 instruction_class_table = {
     "00": NOP,
     "01": LD,
+    "08": LD,
     "0d": DEC,
     "11": LD,
     "13": INC,

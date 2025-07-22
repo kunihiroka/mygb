@@ -10,10 +10,10 @@ class Register:
         self.l = 0
         self.sp = int('FFFE',16)
         self.pc = 0
-        self.z = 0
-        self.n = 0
-        self.h = 0
-        self.c = 0
+        self.z_flag = 0
+        self.n_flag = 0
+        self.h_flag = 0
+        self.c_flag = 0
     
     def SetA(self,value):
         self.a = value & 0xFF    # 1byteでマスク
@@ -103,17 +103,29 @@ class Register:
     def GetPC(self):
         return self.pc
 
-    def SetZ(self,value):
-        self.z = value & 0x1    # 1bitでマスク
+    def SetZFlag(self,value):
+        self.z_flag = value & 0x1    # 1bitでマスク
 
-    def GetZ(self):
-        return self.z
+    def GetZFlag(self):
+        return self.z_flag
 
-    def SetN(self,value):
-        self.n = value & 0x1    # 1bitでマスク
+    def SetNFlag(self,value):
+        self.n_flag = value & 0x1    # 1bitでマスク
 
-    def GetN(self):
-        return self.n
+    def GetNFlag(self):
+        return self.n_flag
+
+    def SetHFlag(self,value):
+        self.h_flag = value & 0x1
+
+    def GetCFlag(self):
+        return self.c_flag
+
+    def SetCFlag(self,value):
+        self.c_flag = value & 0x1
+
+    def GetHFlag(self):
+        return self.h_flag
 
 
 

@@ -14,6 +14,9 @@ class LD(MyInterface):
         if opcode == 0x01:
             # LD BC, nn
             parameter_size = 2
+        elif opcode == 0x08:
+            # LD (nn),SP
+            parameter_size = 2
         elif opcode == 0x11:
             # LD DE, nn
             parameter_size = 2
@@ -44,6 +47,10 @@ class LD(MyInterface):
             # LD BC,nn
             register.SetBC(parameter)
             clock = 12
+        elif opcode == 0x08:
+            # LD (nn), SP
+            memory.SetMemory(parameter, register.GetSP())
+            clock = 20
         elif opcode == 0x11:
             # LD DE,nn
             register.SetDE(parameter)
